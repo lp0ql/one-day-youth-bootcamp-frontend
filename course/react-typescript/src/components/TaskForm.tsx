@@ -1,5 +1,9 @@
 import React from 'react';
+import Button from "@mui/material/Button";
+import TextField from '@mui/material/TextField';
+import Box from "@mui/material/Box";
 import { Task } from '..';
+
 
 export const TaskForm: React.FC<{
   tasks : Task[],
@@ -33,28 +37,52 @@ export const TaskForm: React.FC<{
 
   return (
     <>
-    新しいタスクを追加する
-    <input 
+    <h2>新しいタスクを追加する</h2>
+
+
+
+    <Box>
+
+      <TextField
+        color="primary"
+        label={"タスクを入力"}
         onChange={(e) => {
           setNewTaskLabel(e.target.value)
         }}
- 
         value={newTaskLabel}
-    />
+        sx={{
+          width: "100%"
+        }}
+      />
 
 
-    <button onClick={() => {
-      handleClickAddButton();
+
+    </Box>
+
+    <Box style={{
+      marginTop: "10px"
     }}>
-      追加
-    </button>
-    <br />
+      <Button  variant="outlined" onClick={() => {
+        handleClickAddButton();
+      }}>
+        追加
+      </Button>
+    </Box>
 
-    <button onClick={() => {
-      handleClickClearTasksButton();
+
+    <Box style={{
+      marginTop: "10px"
     }}>
-      完了済みタスクを削除
-    </button>
+      <Button  variant="contained" color="error" onClick={() => {
+        handleClickClearTasksButton();
+      }}>
+        完了済みタスクを削除
+      </Button>
+    </Box>
+
+
+
+
     </>
   );
 };
